@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>النخبة + | Elite +</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">النخبة <span class="plus">+</span></h1>
+            <p class="subtitle">تعلم مفاهيم الفيزياء الأساسية (A1) بطريقة تفاعلية مبسطة</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <button class="nav-btn active" data-section="vocabulary">المصطلحات الأساسية</button>
+                <button class="nav-btn" data-section="quiz">اختبر معلوماتك</button>
+                <button class="nav-btn" data-section="progress">مستوى التقدم</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Vocabulary Section -->
+        <section id="vocabulary" class="section active">
+            <div class="container">
+                <div id="department-panel" class="department-panel">
+                    <!-- Department cards will be populated here -->
+                </div>
+
+                <div id="department-info" class="department-info">
+                    <!-- Selected department details will appear here -->
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="ابحث عن مصطلح فيزيائي...">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">الكل</button>
+                        <button class="filter-btn" data-filter="atomic">ذري</button>
+                        <button class="filter-btn" data-filter="electrical">كهربائي</button>
+                        <button class="filter-btn" data-filter="thermal">حراري</button>
+                        <button class="filter-btn" data-filter="quantum">كمي</button>
+                    </div>
+                </div>
+                
+                <div class="word-grid" id="word-grid">
+                    <!-- Words will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>اختبر معلوماتك</h2>
+                        <div class="quiz-stats">
+                            <span id="score-display">الدرجة: 0</span>
+                            <span id="progress-display">التقدم: 0/0</span>
+                        </div>
+                    </div>
+                    
+                    <button id="start-quiz-btn" class="btn-primary">ابدأ الاختبار</button>
+                    
+                    <div id="quiz-content" style="display: none;">
+                        <!-- Quiz questions will normally be populated here -->
+                    </div>
+                    
+                    <button id="next-question-btn" class="btn-secondary" style="display: none;">السؤال التالي</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="section">
+            <div class="container">
+                <div class="progress-grid">
+                    <div class="progress-card">
+                        <h3>إجمالي الكلمات</h3>
+                        <div class="stat-number" id="total-words">0</div>
+                    </div>
+                    <div class="progress-card">
+                        <h3>الكلمات المتعلمة</h3>
+                        <div class="stat-number" id="learned-words">0</div>
+                    </div>
+                    <div class="progress-card">
+                        <h3>أفضل درجة بالاختبار</h3>
+                        <div class="stat-number" id="quiz-score">0%</div>
+                    </div>
+                </div>
+
+                <div class="category-progress">
+                    <h3>التقدم في الأقسام</h3>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>التركيب الذري</span>
+                            <span>0/8</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="atomic-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>الخواص الكهربائية</span>
+                            <span>0/8</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="electrical-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>المفاهيم الحرارية</span>
+                            <span>0/7</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="thermal-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>الفيزياء الكمية</span>
+                            <span>0/7</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" id="quantum-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Word Detail Modal -->
+    <div id="word-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div class="modal-header">
+                <div>
+                    <h2 id="modal-arabic" class="modal-title-ar"></h2>
+                    <h3 id="modal-word" class="modal-title-en"></h3>
+                </div>
+                <span id="modal-category" class="category-badge"></span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="visualization-container">
+                    <div id="visualization-area"></div>
+                    <div id="visualization-controls" class="controls-panel"></div>
+                </div>
+                
+                <div class="info-container">
+                    <div class="definition-box">
+                        <h4>التعريف المبسط</h4>
+                        <p id="modal-definition"></p>
+                    </div>
+                    
+                    <div class="context-box">
+                        <h4>شرح إضافي تفاعلي</h4>
+                        <div id="interactive-text"></div>
+                        <p class="hint-text">* اضغط أو مرر الماوس على الكلمات الملونة لمعرفة المزيد</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Region for Accessibility -->
+    <div id="a11y-speak" class="sr-only" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script src="js/constants.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/visualizations.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
